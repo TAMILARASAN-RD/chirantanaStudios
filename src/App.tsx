@@ -13,6 +13,7 @@ import Pillar3 from './components/Pillar3';
 import SelectedWork from './components/SelectedWork';
 import Pillar4 from './components/Pillar4';
 import Testimonials from './components/Testimonials';
+import Team from './components/Team';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -31,6 +32,7 @@ export default function App() {
         <SelectedWork />
         <Pillar4 />
         <Testimonials />
+        <Team />
         <FAQ />
         <Contact />
       </main>
