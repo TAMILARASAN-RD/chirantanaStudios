@@ -13,7 +13,7 @@ const projects = [
 
 export default function SelectedWork() {
   return (
-    <section id="work" className="py-32 bg-brand-black text-white">
+    <section id="portfolio" className="py-32 bg-brand-black text-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-end mb-16">
           <div>
