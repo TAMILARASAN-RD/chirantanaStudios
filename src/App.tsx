@@ -5,6 +5,11 @@
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import IntroNarrative from './components/IntroNarrative';
+import TheProblem from './components/TheProblem';
+import WhoWeAre from './components/WhoWeAre';
+import HowWeThink from './components/HowWeThink';
+import NarrativeEcosystem from './components/NarrativeEcosystem';
 import TrustAnchors from './components/TrustAnchors';
 import Manifesto from './components/Manifesto';
 import Pillar1 from './components/Pillar1';
@@ -24,6 +29,11 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <IntroNarrative />
+        <TheProblem />
+        <WhoWeAre />
+        <HowWeThink />
+        <NarrativeEcosystem />
         <TrustAnchors />
         <Manifesto />
         <Pillar1 />

@@ -25,24 +25,24 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-32 bg-brand-black text-white border-t border-white/10">
+    <section className="py-32 bg-brand-white text-brand-black border-t border-black/10">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="text-brand-red font-semibold tracking-wider text-sm uppercase mb-4 block">
             Clarity
           </span>
-          <h2 className="text-4xl md:text-5xl font-serif">Common Inquiries</h2>
+          <h2 className="text-4xl md:text-5xl font-serif text-brand-black">Common Inquiries</h2>
         </div>
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-white/10 pb-4">
+            <div key={index} className="border-b border-black/10 pb-4">
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full flex justify-between items-center py-4 text-left hover:text-brand-red transition-colors"
               >
                 <span className="text-xl font-medium pr-8">{faq.q}</span>
-                {openIndex === index ? <Minus size={20} className="text-brand-red shrink-0" /> : <Plus size={20} className="text-white/50 shrink-0" />}
+                {openIndex === index ? <Minus size={20} className="text-brand-red shrink-0" /> : <Plus size={20} className="text-black/50 shrink-0" />}
               </button>
               <AnimatePresence>
                 {openIndex === index && (
@@ -53,7 +53,7 @@ export default function FAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <p className="text-white/60 font-light pb-6 leading-relaxed">
+                    <p className="text-black/60 font-light pb-6 leading-relaxed">
                       {faq.a}
                     </p>
                   </motion.div>

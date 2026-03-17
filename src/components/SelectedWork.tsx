@@ -13,16 +13,16 @@ const projects = [
 
 export default function SelectedWork() {
   return (
-    <section id="portfolio" className="py-32 bg-brand-black text-white">
+    <section id="portfolio" className="py-32 bg-brand-white text-brand-black">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-end mb-16">
           <div>
             <span className="text-brand-red font-semibold tracking-wider text-sm uppercase mb-4 block">
               Proof of Craft
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif">Selected Work</h2>
+            <h2 className="text-4xl md:text-5xl font-serif text-brand-black">Selected Work</h2>
           </div>
-          <a href="#contact" className="hidden md:inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors">
+          <a href="#contact" className="hidden md:inline-flex items-center gap-2 text-black/60 hover:text-brand-black transition-colors">
             View Full Archive <span className="text-xl">→</span>
           </a>
         </div>
@@ -37,7 +37,7 @@ export default function SelectedWork() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className={`${project.span} group cursor-pointer`}
             >
-              <div className="relative aspect-[16/9] md:aspect-auto md:h-[400px] bg-brand-gray overflow-hidden mb-4 rounded-sm">
+              <div className="relative aspect-[16/9] md:aspect-auto md:h-[400px] bg-black/5 overflow-hidden mb-4 rounded-sm">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
                 
                 {project.sequenceType === 'event' ? (
@@ -50,17 +50,17 @@ export default function SelectedWork() {
                   <ArtSequence />
                 ) : (
                   <>
-                    <div className="absolute inset-0 flex items-center justify-center text-white/20 font-serif italic text-xl z-0">
+                    <div className="absolute inset-0 flex items-center justify-center text-black/10 font-serif italic text-xl z-0">
                       [Project Still]
                     </div>
                     {/* Image placeholder */}
-                    <div className="absolute inset-0 bg-white/5 group-hover:scale-105 transition-transform duration-700 ease-out" />
+                    <div className="absolute inset-0 bg-black/5 group-hover:scale-105 transition-transform duration-700 ease-out" />
                   </>
                 )}
               </div>
               <div className="flex justify-between items-start">
-                <h3 className="text-xl font-medium">{project.title}</h3>
-                <span className="text-xs font-semibold tracking-wider text-white/40 uppercase">{project.category}</span>
+                <h3 className="text-xl font-medium text-brand-black">{project.title}</h3>
+                <span className="text-xs font-semibold tracking-wider text-black/40 uppercase">{project.category}</span>
               </div>
             </motion.div>
           ))}

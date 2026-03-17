@@ -6,7 +6,7 @@
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
   --color-brand-red: #ED2127;
   --color-brand-black: #000000;
-  --color-brand-white: #FFFFFF;
+  --color-brand-white: #F0EFE8;
   --color-brand-gray: #111111;
   --color-brand-light: #F9F9F9;
 }
@@ -14,6 +14,31 @@
 body {
   font-family: var(--font-sans);
   background-color: var(--color-brand-black);
-  color: var(--color-brand-white);
+  color: #FFFFFF;
   overflow-x: hidden;
+}
+
+/* Custom Red Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-brand-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-red);
+  border-radius: 5px;
+  border: 2px solid var(--color-brand-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C41C1E;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-red) var(--color-brand-black);
 }

@@ -19,12 +19,11 @@ export default function Event2Sequence() {
   });
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden bg-brand-black group-hover:scale-105 transition-transform duration-700 ease-out">
+    <div className="absolute inset-0 z-0 overflow-hidden">
       <canvas
         ref={canvasRef}
         className={`w-full h-full object-cover transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-8 h-8 border-2 border-brand-red border-t-transparent rounded-full animate-spin" />
