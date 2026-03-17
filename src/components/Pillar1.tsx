@@ -37,7 +37,7 @@ const services = [
 
 export default function Pillar1() {
   return (
-    <section id="films" className="py-32 bg-brand-black text-white relative">
+    <section id="services" className="py-32 bg-brand-black text-white relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           

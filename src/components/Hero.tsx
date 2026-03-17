@@ -3,7 +3,7 @@ import ImageSequence from './ImageSequence';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-brand-black">
+    <section id="home" className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-brand-black">
       <ImageSequence />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">

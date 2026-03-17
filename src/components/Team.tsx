@@ -25,7 +25,7 @@ const additionalTeam = [
 
 export default function Team() {
   return (
-    <section className="py-32 bg-brand-black text-brand-white">
+    <section id="team" className="py-32 bg-brand-black text-brand-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-20">
           <span className="text-brand-red font-semibold tracking-wider text-sm uppercase mb-4 block">
