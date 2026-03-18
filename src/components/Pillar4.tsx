@@ -1,13 +1,13 @@
 import { motion } from 'motion/react';
 
-import photoshootImg from '../3 images/photoshoots.jpeg';
-import eventImg from '../3 images/event coverage.jpeg';
-import weddingImg from '../3 images/wedding cinematography.jpg';
+import photoshootImg from '../3 images/Photoshoot.jpg';
+import eventCoverageImg from '../3 images/event coverage.jpg';
+import weddingCinematographyImg from '../3 images/wedding cinematography.jpg';
 
 const captures = [
   { title: "Photoshoots", desc: "Editorial, fashion, and corporate portraits.", image: photoshootImg },
-  { title: "Event Coverage", desc: "Discreet, high-end documentation of significant moments.", image: eventImg },
-  { title: "Wedding Cinematography", desc: "Emotional, cinematic storytelling for premium celebrations.", image: weddingImg },
+  { title: "Event Coverage", desc: "Discreet, high-end documentation of significant moments.", image: eventCoverageImg },
+  { title: "Wedding Cinematography", desc: "Emotional, cinematic storytelling for premium celebrations.", image: weddingCinematographyImg },
 ];
 
 export default function Pillar4() {

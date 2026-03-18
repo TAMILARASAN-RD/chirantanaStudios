@@ -3,11 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
+    <title>Chirantana Studios</title>
+    
+    <!-- Critical CSS to prevent FCP white-flash -->
+    <style>
+      :root { background-color: #000; color-scheme: dark; }
+      body { margin: 0; padding: 0; background-color: #000; min-height: 100vh; font-family: sans-serif; }
+      #root { width: 100%; min-height: 100vh; background-color: #000; }
+    </style>
+
+    <!-- LCP Asset Preloading -->
+    <link rel="preload" as="video" href="/hero-cinematic.mp4" type="video/mp4" crossorigin="anonymous" />
+    <link rel="icon" type="image/png" href="/src/favicon.png" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+
+
 

@@ -43,7 +43,7 @@ export default function Hero() {
           <a href="#portfolio" className="px-10 py-4 bg-white text-brand-black font-semibold rounded-sm hover:bg-gray-200 transition-all active:scale-95 shadow-xl shadow-white/5">
             Explore Our Work
           </a>
-          <a href="#contact" className="px-10 py-4 border border-white/20 text-white font-semibold rounded-sm hover:bg-white/10 transition-all active:scale-95 backdrop-blur-sm">
+          <a href="#contact" className="px-10 py-4 bg-brand-red text-white font-semibold rounded-sm hover:bg-red-700 transition-all active:scale-95">
             Begin the Narrative
           </a>
         </motion.div>

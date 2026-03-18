@@ -10,31 +10,29 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    // Dynamic transition: Start the "Click" sequence after a tiny buffer
-    // ensuring the rotating lens is seen but not causing artificial wait.
+    // SNAPPY DYNAMIC TRANSITION
+    // We start the shutter click almost immediately (as soon as React hydrates)
     const startSequence = () => {
       setTriggerShutter(true);
       
-      // Shutter Click -> Flash (Fast response)
+      // Momentary haptic pause (felt, not waited for)
       setTimeout(() => {
         setTriggerFlash(true);
         
-        // Hide camera at peak of flash intensity
+        // At peak intensity (fast!), hide camera
         setTimeout(() => {
           setIsCameraVisible(false);
-        }, 250);
+        }, 200);
 
-        // Finish sequence and reveal home
+        // Instant transition to home
         setTimeout(() => {
           setIsDone(true);
           onFinished();
-        }, 1000);
-      }, 150);
+        }, 900);
+      }, 100);
     };
 
-    // The sequence starts almost immediately for a snappy feel.
-    const timer = setTimeout(startSequence, 400); 
-
+    const timer = setTimeout(startSequence, 150); 
     return () => clearTimeout(timer);
   }, [onFinished]);
 
@@ -49,7 +47,7 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
   if (isDone) return null;
 
   return (
-    <div className={`fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden transition-colors duration-500 ${isCameraVisible ? 'bg-black' : 'bg-transparent'}`}>
+    <div className={`fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden transition-colors duration-400 ${isCameraVisible ? 'bg-black' : 'bg-transparent'}`}>
       
       {/* 1. CAMERA & LENS LAYER */}
       <AnimatePresence>
@@ -58,31 +56,34 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             animate={triggerShutter ? {
-              y: [0, 5, -2, 0],
-              scale: [1, 0.97, 1],
+              y: [0, 4, -2, 0],
+              scale: [1, 0.98, 1],
             } : {}}
             transition={{ duration: 0.15 }}
             className="relative z-10 flex flex-col items-center justify-center w-full max-w-[900px] mb-20 px-6"
           >
             {/* Photographic Camera Asset */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               className="relative w-[85vw] max-w-[600px] aspect-square flex items-center justify-center"
             >
               <img 
                 src={cameraImg} 
                 alt="Retro Camera" 
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
                 className="w-full h-full object-contain pointer-events-none drop-shadow-[0_20px_60px_rgba(0,0,0,1)]"
               />
 
-              {/* ROTATING LENS - PIXEL PERFECT CENTER ALIGNMENT */}
+              {/* LENS ASSET - CENTER ALIGNMENT FIXED */}
               <div className="absolute top-[60.4%] left-[50.1%] -translate-x-1/2 -translate-y-1/2 w-[48.5%] h-[48.5%] flex items-center justify-center pointer-events-none rounded-full overflow-hidden">
                 <motion.div
-                   animate={{ rotate: [0, 45, -45, 0] }} // Subtle focus-pull
+                   animate={{ rotate: [0, 20, -20, 0] }} // Very fast focus-pull
                    transition={{ 
                      repeat: Infinity, 
-                     duration: 4, 
+                     duration: 3, 
                      ease: "easeInOut" 
                    }}
                    className="w-full h-full"
@@ -90,16 +91,18 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
                    <img 
                     src={lensImg} 
                     alt="Rotating Lens" 
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="sync"
                     className="w-full h-full object-cover pointer-events-none" 
                    />
                 </motion.div>
                 
-                {/* Internal lens shadow for depth */}
-                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_15px_rgba(0,0,0,0.4)] pointer-events-none" />
+                {/* Visual Fix for Seamless rim integration */}
+                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] pointer-events-none" />
               </div>
               
-              {/* Glass surface flare (remains static on lens) */}
-              <div className="absolute top-[60.4%] left-[50.1%] -translate-x-1/2 -translate-y-1/2 w-[48.5%] h-[48.5%] rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.08)_0%,transparent_60%)] pointer-events-none mix-blend-screen" />
+              <div className="absolute top-[60.4%] left-[50.1%] -translate-x-1/2 -translate-y-1/2 w-[48.5%] h-[48.5%] rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.1)_0%,transparent_60%)] pointer-events-none" />
             </motion.div>
 
             {/* Branding Text */}
@@ -108,7 +111,7 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
               animate={{ opacity: 1 }}
               className="text-center -mt-12 relative z-20"
             >
-              <h1 className="text-white font-sans font-black text-2xl md:text-5xl uppercase tracking-[0.25em] leading-none mb-4 whitespace-nowrap">
+              <h1 className="text-white font-sans font-black text-2xl md:text-5xl uppercase tracking-[0.25em] mb-4 whitespace-nowrap">
                 Chirantana Studios
               </h1>
               <p className="text-white/40 font-sans font-light text-[10px] md:text-base uppercase tracking-[0.65em]">
@@ -119,7 +122,7 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
         )}
       </AnimatePresence>
 
-      {/* 2. FLASH TRANSITION (Starts exactly from lens center) */}
+      {/* 2. FLASH TRANSITION */}
       <AnimatePresence>
         {triggerFlash && (
           <motion.div
@@ -129,7 +132,7 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
               opacity: [0, 1, 1, 0] 
             }}
             transition={{ 
-              duration: 1.1, 
+              duration: 1, 
               times: [0, 0.25, 0.5, 1],
               ease: "easeOut",
             }}
