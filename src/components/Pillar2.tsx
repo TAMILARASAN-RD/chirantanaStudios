@@ -3,12 +3,12 @@ import ElectionRallySequence from './ElectionRallySequence';
 
 export default function Pillar2() {
   return (
-    <section id="digital" className="py-32 bg-brand-gray text-white">
+    <section id="digital" className="py-32 bg-brand-white text-brand-black">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
           <div className="lg:col-span-6 order-2 lg:order-1">
-            <div className="aspect-[4/5] bg-brand-black border border-white/5 relative overflow-hidden flex items-center justify-center">
+            <div className="aspect-[4/5] bg-black/5 border border-black/5 relative overflow-hidden flex items-center justify-center">
               <ElectionRallySequence />
             </div>
           </div>
@@ -23,30 +23,30 @@ export default function Pillar2() {
               <span className="text-brand-red font-semibold tracking-wider text-sm uppercase mb-4 block">
                 Pillar II
               </span>
-              <h2 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
+              <h2 className="text-4xl md:text-5xl font-serif leading-tight mb-6 text-brand-black">
                 Brand & Digital<br />
-                <span className="italic text-white/70">Amplification</span>
+                <span className="italic text-black/60">Amplification</span>
               </h2>
-              <p className="text-lg text-white/60 font-light mb-8 leading-relaxed">
+              <p className="text-lg text-black/60 font-light mb-8 leading-relaxed">
                 Great stories need strategic distribution. We don't just create content; we engineer its reach. Our PR and digital marketing services ensure your narrative lands with the right audience, at the right time, with maximum authority.
               </p>
               
               <ul className="space-y-4 mb-10">
                 <li className="flex items-start gap-3">
                   <span className="text-brand-red mt-1">â</span>
-                  <span className="text-white/80">Strategic PR & Media Relations</span>
+                  <span className="text-black/80">Strategic PR & Media Relations</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-brand-red mt-1">â</span>
-                  <span className="text-white/80">Digital Campaign Management</span>
+                  <span className="text-black/80">Digital Campaign Management</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-brand-red mt-1">â</span>
-                  <span className="text-white/80">Brand Positioning & Identity</span>
+                  <span className="text-black/80">Brand Positioning & Identity</span>
                 </li>
               </ul>
 
-              <a href="#contact" className="px-8 py-4 bg-white text-brand-black font-medium rounded-sm hover:bg-gray-200 transition-colors inline-block">
+              <a href="#contact" className="px-8 py-4 bg-brand-black text-white font-medium rounded-sm hover:bg-black/90 transition-colors inline-block">
                 Amplify Your Brand
               </a>
             </motion.div>

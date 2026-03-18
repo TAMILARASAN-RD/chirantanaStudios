@@ -12,7 +12,7 @@ const captures = [
 
 export default function Pillar4() {
   return (
-    <section id="captures" className="py-32 bg-[#1A1515] text-white">
+    <section id="captures" className="py-32 bg-brand-black text-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 text-center md:text-left">
           <span className="text-brand-red font-semibold tracking-wider text-sm uppercase mb-4 block">
