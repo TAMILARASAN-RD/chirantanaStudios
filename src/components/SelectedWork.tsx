@@ -1,8 +1,11 @@
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
+import { useState } from 'react';
 import Event2Sequence from './Event2Sequence';
 import SingerSequence from './SingerSequence';
 import Singer2Sequence from './Singer2Sequence';
 import ArtSequence from './ArtSequence';
+
+const categories = ["All", "Corporate Film", "Documentary", "Ad Campaign", "Public Affairs"];
 
 const projects = [
   { title: "Global Tech Summit", category: "Corporate Film", span: "md:col-span-8", sequenceType: 'art' },
@@ -12,59 +15,87 @@ const projects = [
 ];
 
 export default function SelectedWork() {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredProjects = activeCategory === "All" 
+    ? projects 
+    : projects.filter(p => p.category === activeCategory);
+
   return (
-    <section id="portfolio" className="py-32 bg-brand-black text-white">
+    <section id="portfolio" className="py-32 bg-brand-white text-brand-black">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-end mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
             <span className="text-brand-red font-semibold tracking-wider text-sm uppercase mb-4 block">
-              Proof of Craft
+              Stories in Motion
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif">Selected Work</h2>
+            <h2 className="text-4xl md:text-5xl font-serif text-brand-black">Selected Work</h2>
           </div>
-          <a href="#contact" className="hidden md:inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors">
-            View Full Archive <span className="text-xl">→</span>
-          </a>
+          
+          <div className="flex flex-wrap gap-4 md:gap-8">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`text-xs uppercase tracking-widest font-bold pb-2 border-b-2 transition-all ${
+                  activeCategory === cat 
+                    ? "border-brand-red text-brand-black" 
+                    : "border-transparent text-black/40 hover:text-black/60"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {projects.map((project, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`${project.span} group cursor-pointer`}
-            >
-              <div className="relative aspect-[16/9] md:aspect-auto md:h-[400px] bg-brand-gray overflow-hidden mb-4 rounded-sm">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
-                
-                {project.sequenceType === 'event' ? (
-                  <Event2Sequence />
-                ) : project.sequenceType === 'singer' ? (
-                  <SingerSequence />
-                ) : project.sequenceType === 'singer2' ? (
-                  <Singer2Sequence />
-                ) : project.sequenceType === 'art' ? (
-                  <ArtSequence />
-                ) : (
-                  <>
-                    <div className="absolute inset-0 flex items-center justify-center text-white/20 font-serif italic text-xl z-0">
-                      [Project Still]
-                    </div>
-                    {/* Image placeholder */}
-                    <div className="absolute inset-0 bg-white/5 group-hover:scale-105 transition-transform duration-700 ease-out" />
-                  </>
-                )}
-              </div>
-              <div className="flex justify-between items-start">
-                <h3 className="text-xl font-medium">{project.title}</h3>
-                <span className="text-xs font-semibold tracking-wider text-white/40 uppercase">{project.category}</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div 
+          layout
+          className="grid grid-cols-1 md:grid-cols-12 gap-6 min-h-[400px]"
+        >
+          <AnimatePresence mode='popLayout'>
+            {filteredProjects.map((project, index) => (
+              <motion.div 
+                key={project.title}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5 }}
+                className={`${project.span} group cursor-pointer relative`}
+              >
+                <div className="relative aspect-[16/9] md:aspect-auto md:h-[400px] bg-black/5 overflow-hidden mb-4 rounded-sm">
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-brand-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex flex-col items-center justify-center p-6">
+                    <motion.button 
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-6 py-3 bg-brand-red text-white text-xs uppercase tracking-widest font-bold rounded-sm shadow-xl shadow-brand-red/20 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500"
+                    >
+                      View Case Study
+                    </motion.button>
+                  </div>
+                  
+                  {project.sequenceType === 'event' ? (
+                    <Event2Sequence />
+                  ) : project.sequenceType === 'singer' ? (
+                    <SingerSequence />
+                  ) : project.sequenceType === 'singer2' ? (
+                    <Singer2Sequence />
+                  ) : project.sequenceType === 'art' ? (
+                    <ArtSequence />
+                  ) : (
+                    <div className="absolute inset-0 bg-black/5 group-hover:scale-105 transition-transform duration-700 ease-out" />
+                  )}
+                </div>
+                <div className="flex justify-between items-start">
+                  <h3 className="text-xl font-medium text-brand-black">{project.title}</h3>
+                  <span className="text-xs font-semibold tracking-wider text-black/40 uppercase">{project.category}</span>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

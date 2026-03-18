@@ -1,8 +1,6 @@
 import { useState } from 'react';
 
 export default function Contact() {
-  const [service, setService] = useState('films');
-
   return (
     <section id="contact" className="py-32 bg-brand-black text-white relative overflow-hidden">
       {/* Subtle red glow */}
@@ -13,86 +11,68 @@ export default function Contact() {
           
           <div>
             <span className="text-brand-red font-semibold tracking-wider text-sm uppercase mb-4 block">
-              Initiate a Mandate
+              Contact
             </span>
             <h2 className="text-4xl md:text-6xl font-serif leading-tight mb-8">
-              Let's discuss your<br />
-              <span className="italic text-white/70">next project.</span>
+              Ready to Build Something<br />
+              <span className="italic text-white/70">That Lasts?</span>
             </h2>
-            <p className="text-lg text-white/60 font-light mb-12 max-w-md">
-              Select your area of interest below. For confidential political inquiries, please use the direct WhatsApp channel.
+            <p className="text-lg text-white/60 font-light mb-12 max-w-md leading-relaxed">
+              If you are ready to stop executing randomly and start building intentionally, let us talk.
             </p>
             
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div>
-                <h4 className="text-white/40 uppercase tracking-wider font-semibold text-xs mb-2">Direct Contact</h4>
-                <p className="text-xl font-serif hover:text-brand-red transition-colors cursor-pointer">hello@chirantanastudios.com</p>
+                <h4 className="text-white/40 uppercase tracking-widest font-bold text-[10px] mb-3">Direct Inquiry</h4>
+                <p className="text-xl md:text-2xl font-serif hover:text-brand-red transition-colors cursor-pointer border-b border-white/10 pb-2 inline-block">hello@chirantanastudios.com</p>
               </div>
               <div>
-                <h4 className="text-white/40 uppercase tracking-wider font-semibold text-xs mb-2">Confidential Channel</h4>
-                <a href="#" className="inline-flex items-center gap-2 text-brand-red hover:text-red-400 transition-colors font-medium">
-                  Message via WhatsApp →
+                <h4 className="text-white/40 uppercase tracking-widest font-bold text-[10px] mb-3">Confidential Channel</h4>
+                <a href="#" className="inline-flex items-center gap-2 text-brand-red hover:text-red-400 transition-colors font-medium text-lg">
+                  Direct via WhatsApp →
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="bg-white/5 p-8 md:p-12 rounded-sm border border-white/10 backdrop-blur-sm">
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+          <div className="bg-white/5 p-8 md:p-12 rounded-sm border border-white/10 backdrop-blur-md">
+            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
               
-              <div>
-                <label className="block text-sm font-medium text-white/70 mb-3">Area of Interest</label>
-                <div className="grid grid-cols-2 gap-3">
-                  {['films', 'digital', 'political', 'captures'].map((type) => (
-                    <button
-                      key={type}
-                      type="button"
-                      onClick={() => setService(type)}
-                      className={`py-3 px-4 text-sm font-medium rounded-sm border transition-colors ${
-                        service === type 
-                          ? 'bg-brand-red border-brand-red text-white' 
-                          : 'border-white/20 text-white/60 hover:border-white/40 hover:text-white'
-                      }`}
-                    >
-                      {type === 'films' && 'Films & Visuals'}
-                      {type === 'digital' && 'Brand & Digital'}
-                      {type === 'political' && 'Public Affairs'}
-                      {type === 'captures' && 'Signature Captures'}
-                    </button>
-                  ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="group">
+                  <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-2 group-focus-within:text-brand-red transition-colors">Name</label>
+                  <input type="text" className="w-full bg-transparent border-b border-white/20 py-2 text-white focus:outline-none focus:border-brand-red transition-all placeholder:text-white/10" placeholder="Your Full Name" />
+                </div>
+                <div className="group">
+                  <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-2 group-focus-within:text-brand-red transition-colors">Organization</label>
+                  <input type="text" className="w-full bg-transparent border-b border-white/20 py-2 text-white focus:outline-none focus:border-brand-red transition-all placeholder:text-white/10" placeholder="Brand / Company" />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-white/70 mb-2">Name</label>
-                  <input type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-brand-red transition-colors placeholder:text-white/20" placeholder="John Doe" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="group">
+                  <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-2 group-focus-within:text-brand-red transition-colors">Email</label>
+                  <input type="email" className="w-full bg-transparent border-b border-white/20 py-2 text-white focus:outline-none focus:border-brand-red transition-all placeholder:text-white/10" placeholder="john@example.com" />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-white/70 mb-2">Organization</label>
-                  <input type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-brand-red transition-colors placeholder:text-white/20" placeholder="Company Name" />
+                <div className="group">
+                  <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-2 group-focus-within:text-brand-red transition-colors">Phone</label>
+                  <input type="tel" className="w-full bg-transparent border-b border-white/20 py-2 text-white focus:outline-none focus:border-brand-red transition-all placeholder:text-white/10" placeholder="+91 XXX XXX XXXX" />
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-white/70 mb-2">Email</label>
-                <input type="email" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-brand-red transition-colors placeholder:text-white/20" placeholder="john@example.com" />
+              <div className="group">
+                <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-2 group-focus-within:text-brand-red transition-colors">What are you building?</label>
+                <input type="text" className="w-full bg-transparent border-b border-white/20 py-2 text-white focus:outline-none focus:border-brand-red transition-all placeholder:text-white/10" placeholder="Feature film, political campaign, luxury brand..." />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-white/70 mb-2">Project Details</label>
-                <textarea rows={4} className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-brand-red transition-colors placeholder:text-white/20 resize-none" placeholder="Briefly describe your objectives..." />
+              <div className="group">
+                <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-2 group-focus-within:text-brand-red transition-colors">What challenge are you facing?</label>
+                <textarea rows={3} className="w-full bg-transparent border-b border-white/20 py-2 text-white focus:outline-none focus:border-brand-red transition-all placeholder:text-white/10 resize-none" placeholder="Visibility, trust, narrative clarity..." />
               </div>
 
-              <button type="submit" className="w-full py-4 bg-white text-brand-black font-medium rounded-sm hover:bg-gray-200 transition-colors mt-4">
-                Submit Inquiry
+              <button type="submit" className="w-full py-5 bg-brand-red text-white font-bold uppercase tracking-[0.2em] text-xs rounded-sm hover:bg-red-700 transition-all active:scale-[0.98] shadow-xl shadow-brand-red/20 mt-4">
+                Begin the Narrative
               </button>
-              
-              {service === 'political' && (
-                <p className="text-xs text-white/40 text-center mt-4">
-                  All inquiries are treated with strict confidentiality.
-                </p>
-              )}
             </form>
           </div>
 

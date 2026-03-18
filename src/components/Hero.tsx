@@ -14,11 +14,11 @@ export default function Hero() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center"
         >
-          <br /> <h1 className="text-4xl md:text-6xl lg:text-7xl font-sans font-black tracking-[0.2em] uppercase mb-4 text-white/90">
+          <br /> <h1 className="text-4xl md:text-6xl lg:text-6xl font-sans font-black tracking-[0.2em] uppercase mb-4 text-white/90">
             Chirantana Studio
           </h1>
 
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif leading-[1.1] tracking-tight mb-8">
+          <h2 className="text-3xl md:text-5xl lg:text-5xl font-serif leading-[1.1] tracking-tight mb-8">
 
             <span className="text-white italic">Crafting Stories That Outlive Time. </span>
           </h2>
@@ -43,7 +43,7 @@ export default function Hero() {
           <a href="#portfolio" className="px-10 py-4 bg-white text-brand-black font-semibold rounded-sm hover:bg-gray-200 transition-all active:scale-95 shadow-xl shadow-white/5">
             Explore Our Work
           </a>
-          <a href="#contact" className="px-10 py-4 border border-white/20 text-white font-semibold rounded-sm hover:bg-white/10 transition-all active:scale-95 backdrop-blur-sm">
+          <a href="#contact" className="px-10 py-4 bg-brand-red text-white font-semibold rounded-sm hover:bg-red-700 transition-all active:scale-95">
             Begin the Narrative
           </a>
         </motion.div>

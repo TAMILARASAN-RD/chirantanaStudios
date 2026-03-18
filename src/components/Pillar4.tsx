@@ -1,18 +1,18 @@
 import { motion } from 'motion/react';
 
-import photoshootImg from '../3 images/photoshoots.jpeg';
-import eventImg from '../3 images/event coverage.jpeg';
-import weddingImg from '../3 images/wedding cinematography.jpg';
+import photoshootImg from '../3 images/Photoshoot.jpg';
+import eventCoverageImg from '../3 images/event coverage.jpg';
+import weddingCinematographyImg from '../3 images/wedding cinematography.jpg';
 
 const captures = [
   { title: "Photoshoots", desc: "Editorial, fashion, and corporate portraits.", image: photoshootImg },
-  { title: "Event Coverage", desc: "Discreet, high-end documentation of significant moments.", image: eventImg },
-  { title: "Wedding Cinematography", desc: "Emotional, cinematic storytelling for premium celebrations.", image: weddingImg },
+  { title: "Event Coverage", desc: "Discreet, high-end documentation of significant moments.", image: eventCoverageImg },
+  { title: "Wedding Cinematography", desc: "Emotional, cinematic storytelling for premium celebrations.", image: weddingCinematographyImg },
 ];
 
 export default function Pillar4() {
   return (
-    <section id="captures" className="py-32 bg-[#1A1515] text-white">
+    <section id="captures" className="py-32 bg-brand-black text-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 text-center md:text-left">
           <span className="text-brand-red font-semibold tracking-wider text-sm uppercase mb-4 block">
