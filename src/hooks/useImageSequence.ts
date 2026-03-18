@@ -9,6 +9,8 @@ interface UseImageSequenceOptions {
   sortFn?: SortFn;
   fps?: number;
   batchSize?: number;
+  loop?: boolean;
+  onComplete?: () => void;
 }
 
 /**
@@ -20,9 +22,12 @@ export function useImageSequence({
   sortFn,
   fps = 24,
   batchSize = 10,
+  loop = true,
+  onComplete,
 }: UseImageSequenceOptions) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const isFinished = useRef(false);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const animFrameRef = useRef<number>(0);
   const lastFrameTimeRef = useRef(0);
@@ -40,12 +45,9 @@ export function useImageSequence({
     let isCancelled = false;
 
     // Resolve URLs from lazy glob
-    // With import: 'default', the resolved value IS the string directly
-    // Without import: 'default', it would be { default: string }
     Promise.all(
       sortedKeys.map((key) =>
         globModules[key]().then((mod: any) => {
-          // Handle both cases: direct string or { default: string }
           if (typeof mod === 'string') return mod;
           if (mod && typeof mod.default === 'string') return mod.default;
           return mod;
@@ -64,10 +66,9 @@ export function useImageSequence({
 
         for (let i = batchStart; i < end; i++) {
           const img = new Image();
-          const onComplete = () => {
+          const onImgComplete = () => {
             loadedCount++;
             batchDone++;
-            // Start playback once first batch loads
             if (loadedCount >= Math.min(batchSize, total)) {
               setIsLoaded(true);
             }
@@ -78,8 +79,8 @@ export function useImageSequence({
               }
             }
           };
-          img.onload = onComplete;
-          img.onerror = onComplete;
+          img.onload = onImgComplete;
+          img.onerror = onImgComplete;
           img.src = resolvedUrls[i];
           imagesRef.current[i] = img;
         }
@@ -93,11 +94,13 @@ export function useImageSequence({
 
   // Animation loop
   useEffect(() => {
-    if (!isLoaded) return;
+    if (!isLoaded || isFinished.current) return;
 
     const interval = 1000 / fps;
 
     function animate(timestamp: number) {
+      if (isFinished.current) return;
+
       if (timestamp - lastFrameTimeRef.current >= interval) {
         lastFrameTimeRef.current = timestamp;
 
@@ -108,18 +111,42 @@ export function useImageSequence({
           return;
         }
 
+        // Find next index
+        let nextIndex = currentIndexRef.current + 1;
+        
+        // Handle end of sequence
+        if (nextIndex >= total) {
+          if (loop) {
+            nextIndex = 0;
+          } else {
+            isFinished.current = true;
+            if (onComplete) onComplete();
+            return;
+          }
+        }
+
         // Find next loaded frame
-        let nextIndex = (currentIndexRef.current + 1) % total;
         let attempts = 0;
         while (attempts < total) {
-          const img = images[nextIndex];
-          if (img && img.complete && img.naturalWidth > 0) break;
-          nextIndex = (nextIndex + 1) % total;
+          const checkIndex = nextIndex % total;
+          const img = images[checkIndex];
+          if (img && img.complete && img.naturalWidth > 0) {
+            nextIndex = checkIndex;
+            break;
+          }
+          nextIndex = (nextIndex + 1);
           attempts++;
         }
 
         if (attempts >= total) {
           animFrameRef.current = requestAnimationFrame(animate);
+          return;
+        }
+
+        // Final check for non-looping end
+        if (!loop && nextIndex < currentIndexRef.current) {
+          isFinished.current = true;
+          if (onComplete) onComplete();
           return;
         }
 
@@ -166,7 +193,7 @@ export function useImageSequence({
 
     animFrameRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animFrameRef.current);
-  }, [isLoaded, fps]);
+  }, [isLoaded, fps, loop, onComplete]);
 
   // Canvas resize
   useEffect(() => {

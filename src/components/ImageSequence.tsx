@@ -1,5 +1,5 @@
-/// <reference types="vite/client" />
 import { useImageSequence } from '../hooks/useImageSequence';
+import { motion, AnimatePresence } from 'motion/react';
 
 // Lazy glob — does NOT load all images at startup
 const globModules = import.meta.glob('../Sequence/*.jpg', { query: '?url' });
@@ -28,7 +28,24 @@ export default function ImageSequence() {
         ref={canvasRef}
         className={`w-full h-full object-cover transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       />
+      
+      <AnimatePresence>
+        {!isLoaded && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 flex items-center justify-center bg-brand-black"
+          >
+            <h3 className="text-[#ed2127] font-serif italic text-2xl md:text-3xl tracking-wide">
+              Something is cooking...
+            </h3>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="absolute inset-0 bg-brand-black/20" />
     </div>
   );
 }
+

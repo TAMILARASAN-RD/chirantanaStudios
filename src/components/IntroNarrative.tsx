@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
-import Event2Sequence from './Event2Sequence';
 
 const narrativeLines = [
   "You have a product.",
@@ -27,34 +26,26 @@ export default function IntroNarrative() {
   });
 
   return (
-    <section id="about" ref={containerRef} className="relative h-[500vh] bg-brand-white">
-      {/* Background Sequence - Sticky */}
+    <section id="about" ref={containerRef} className="relative h-[500vh] bg-brand-black">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-100">
-           <Event2Sequence />
-        </div>
-        
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 overflow-hidden">
           <div className="relative w-full max-w-5xl h-[400px] flex items-center justify-center">
             {narrativeLines.map((line, index) => {
               const step = 1 / narrativeLines.length;
               const center = (index + 0.5) * step;
 
-              // Opacity: 1 at center, 0.5 at siblings' centers, 0 beyond that
               const opacity = useTransform(
                 scrollYProgress,
                 [center - 1.5 * step, center - step, center, center + step, center + 1.5 * step],
                 [0, 0.5, 1, 0.5, 0]
               );
 
-              // Scale: Slight zoom-in as it hits center
               const scale = useTransform(
                 scrollYProgress,
                 [center - step, center, center + step],
                 [0.85, 1.15, 0.85]
               );
 
-              // Y translation: Large movement for faster transition
               const y = useTransform(
                 scrollYProgress,
                 [center - step, center, center + step],
@@ -70,7 +61,7 @@ export default function IntroNarrative() {
                   className="absolute inset-0 flex items-center justify-center p-4 text-center pointer-events-none"
                 >
                   <p className={`text-3xl md:text-5xl lg:text-7xl font-serif leading-tight ${
-                    isSpecial ? "text-white italic" : "text-white"
+                    isSpecial ? "text-brand-red italic" : "text-white"
                   }`}>
                     {line}
                   </p>

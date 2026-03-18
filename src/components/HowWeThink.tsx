@@ -30,7 +30,7 @@ export default function HowWeThink() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-24"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-5xl font-serif mb-6 leading-tight">
             How <span className="text-white italic border-b border-brand-red pb-2">We Think</span>
           </h2>
         </motion.div>

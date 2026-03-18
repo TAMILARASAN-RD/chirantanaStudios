@@ -82,7 +82,7 @@ export default function NarrativeEcosystem() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="portfolio" className="bg-brand-white py-32 px-6">
+    <section id="services" className="bg-brand-white py-40 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial="hidden"
@@ -94,7 +94,7 @@ export default function NarrativeEcosystem() {
           }}
           className="mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-8 leading-tight text-brand-black">
+          <h2 className="text-4xl md:text-5xl lg:text-5xl font-serif mb-8 leading-tight text-brand-black">
             Our <span className="text-black italic">Narrative Ecosystem</span>
           </h2>
           <p className="text-lg text-black/50 max-w-2xl font-light leading-relaxed">
@@ -116,17 +116,14 @@ export default function NarrativeEcosystem() {
               variants={itemVariants}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="relative aspect-square md:aspect-auto md:h-[400px] bg-black/5 border border-black/5 overflow-hidden group p-10 cursor-pointer"
+              className={`relative aspect-square md:aspect-auto md:h-[400px] bg-black/5 border border-black/5 overflow-hidden group p-10 cursor-pointer transition-all duration-500 ${hoveredIndex === index ? 'border-l-4 border-l-brand-red bg-black/[0.08]' : ''}`}
             >
-              {/* Overlay Background */}
-              <div className={`absolute inset-0 bg-brand-red transition-transform duration-700 ease-in-out origin-bottom ${hoveredIndex === index ? 'scale-y-100' : 'scale-y-0'}`} />
-
               <div className="relative z-10 h-full flex flex-col justify-between">
                 <div>
-                  <span className={`text-4xl font-black mb-4 block transition-colors duration-500 ${hoveredIndex === index ? 'text-white/20' : 'text-brand-red/10'}`}>
+                  <span className={`text-4xl font-black mb-4 block transition-colors duration-500 ${hoveredIndex === index ? 'text-brand-red/30' : 'text-brand-red/10'}`}>
                     {service.number}
                   </span>
-                  <h3 className={`text-2xl md:text-3xl font-serif mb-6 leading-tight transition-colors duration-500 ${hoveredIndex === index ? 'text-white' : 'text-brand-black/90'}`}>
+                  <h3 className={`text-2xl md:text-3xl font-serif mb-6 leading-tight transition-colors duration-500 ${hoveredIndex === index ? 'text-brand-red' : 'text-brand-black/90'}`}>
                     {service.title}
                   </h3>
                 </div>
@@ -135,15 +132,15 @@ export default function NarrativeEcosystem() {
                   initial={false}
                   animate={{
                     opacity: hoveredIndex === index ? 1 : 0,
-                    y: hoveredIndex === index ? 0 : 20
+                    y: hoveredIndex === index ? 0 : 10
                   }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-6"
+                  transition={{ duration: 0.3 }}
+                  className="space-y-4"
                 >
-                  <p className="text-white/90 font-light text-sm leading-relaxed">
+                  <p className="text-black/60 font-light text-sm leading-relaxed">
                     {service.description}
                   </p>
-                  <button className="flex items-center gap-2 text-white font-bold uppercase tracking-widest text-xs group/btn">
+                  <button className="flex items-center gap-2 text-brand-red font-bold uppercase tracking-widest text-xs group/btn">
                     View Full Service
                     <ArrowUpRight size={16} className="transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
                   </button>
@@ -151,7 +148,7 @@ export default function NarrativeEcosystem() {
               </div>
 
               {/* Decorative Corner */}
-              <div className="absolute top-0 right-0 w-16 h-16 border-t border-r border-black/5 transition-colors group-hover:border-white/30" />
+              <div className={`absolute top-0 right-0 w-16 h-16 border-t border-r transition-colors duration-500 ${hoveredIndex === index ? 'border-brand-red/30' : 'border-black/5'}`} />
             </motion.div>
           ))}
         </motion.div>

@@ -23,7 +23,7 @@ export default function WhoWeAre() {
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-12 text-brand-black">
+          <h2 className="text-4xl md:text-5xl lg:text-5xl font-serif leading-tight mb-12 text-brand-black">
             Who <span className="text-black italic">We Are</span>
           </h2>
 

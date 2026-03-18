@@ -12,8 +12,8 @@ const painPoints = [
 
 export default function TheProblem() {
   return (
-    <section id="services" className="bg-brand-black py-24 px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+    <section id="services" className="bg-brand-black py-32 px-6 overflow-hidden">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
         {/* Left Column: Text Content */}
         <motion.div
            initial={{ opacity: 0, x: -50 }}
@@ -21,7 +21,7 @@ export default function TheProblem() {
            viewport={{ once: true }}
            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-8">
+          <h2 className="text-4xl md:text-5xl lg:text-5xl font-serif leading-tight mb-8">
             The Problem You<br />
             <span className="text-white italic">May Be Facing</span>
           </h2>
@@ -88,7 +88,7 @@ export default function TheProblem() {
             <div className="w-px h-24 bg-gradient-to-b from-brand-red to-transparent opacity-50" />
           </div>
 
-          <div className="absolute inset-0 border-[32px] border-brand-black pointer-events-none z-30" />
+          <div className="absolute inset-0 border-[32px] border-brand-red/20 pointer-events-none z-30" />
         </motion.div>
       </div>
     </section>
